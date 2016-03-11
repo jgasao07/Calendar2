@@ -45,9 +45,10 @@ public class CalendarAdapter extends BaseAdapter {
     private View previousView;
     public ArrayList<CalendarCollection>  date_collection_arr;
 
-    public CalendarAdapter(Context context, GregorianCalendar monthCalendar,ArrayList<CalendarCollection> date_collection_arr) {
+    public CalendarAdapter(Context context, GregorianCalendar monthCalendar,
+                           ArrayList<CalendarCollection> date_collection_arr) {
         this.date_collection_arr=date_collection_arr;
-        CalendarAdapter.day_string = new ArrayList<String>();
+        CalendarAdapter.day_string = new ArrayList<>();
         Locale.setDefault(Locale.US);
         month = monthCalendar;
         selectedDate = (GregorianCalendar) monthCalendar.clone();
