@@ -6,7 +6,7 @@ public class CalendarCollection {
     public String date="";
     public String event_message="";
 
-    public static ArrayList<CalendarCollection> date_collection_arr;
+    public static ArrayList<CalendarCollection> date_collection_arr = new ArrayList<>();
 
     public CalendarCollection(String date,String event_message){
 

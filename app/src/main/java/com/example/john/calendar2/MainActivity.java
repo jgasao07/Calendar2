@@ -2,6 +2,7 @@ package com.example.john.calendar2;
 
 import java.util.GregorianCalendar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -59,7 +60,7 @@ public class MainActivity extends Activity {
         gridview.setAdapter(cal_adapter);
         gridview.setOnItemClickListener(new OnItemClickListener() {
 
-            public void onItemClick(AdapterView<?> parent, View v,
+            public void onItemClick(AdapterView parent, View v,
                                     int position, long id) {
 
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v,position);
@@ -79,7 +80,8 @@ public class MainActivity extends Activity {
                 }
                 ((CalendarAdapter) parent.getAdapter()).setSelected(v,position);
 
-                ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate, MainActivity.this);
+                ((CalendarAdapter) parent.getAdapter()).getPositionList(selectedGridDate,
+                        MainActivity.this);
             }
 
         });
@@ -116,6 +118,11 @@ public class MainActivity extends Activity {
         cal_adapter.refreshDays();
         cal_adapter.notifyDataSetChanged();
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
+    }
+
+    public void eventsClicked(View v) {
+        Intent intent = new Intent(this,ListViewActivity.class);
+        startActivity(intent);
     }
 
 }
