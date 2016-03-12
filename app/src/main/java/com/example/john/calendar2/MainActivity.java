@@ -24,12 +24,9 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         cal_month = (GregorianCalendar) GregorianCalendar.getInstance();
         cal_month_copy = (GregorianCalendar) cal_month.clone();
         cal_adapter = new CalendarAdapter(this, cal_month,CalendarCollection.date_collection_arr);
-
-
 
         tv_month = (TextView) findViewById(R.id.tv_month);
         tv_month.setText(android.text.format.DateFormat.format("MMMM yyyy", cal_month));
@@ -85,10 +82,7 @@ public class MainActivity extends Activity {
             }
 
         });
-
-
     }
-
 
     protected void setNextMonth() {
         if (cal_month.get(GregorianCalendar.MONTH) == cal_month
@@ -99,7 +93,6 @@ public class MainActivity extends Activity {
             cal_month.set(GregorianCalendar.MONTH,
                     cal_month.get(GregorianCalendar.MONTH) + 1);
         }
-
     }
 
     protected void setPreviousMonth() {
@@ -111,7 +104,6 @@ public class MainActivity extends Activity {
             cal_month.set(GregorianCalendar.MONTH,
                     cal_month.get(GregorianCalendar.MONTH) - 1);
         }
-
     }
 
     public void refreshCalendar() {
@@ -124,5 +116,4 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this,ListViewActivity.class);
         startActivity(intent);
     }
-
 }

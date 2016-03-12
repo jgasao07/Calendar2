@@ -17,17 +17,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.john.calendar2.R;
-import com.example.john.calendar2.CalendarCollection;
 
 public class CalendarAdapter extends BaseAdapter {
     private Context context;
 
     private java.util.Calendar month;
     public GregorianCalendar pmonth;
-    /**
-     * calendar instance for previous month for getting complete view
-     */
     public GregorianCalendar pmonthmaxset;
     private GregorianCalendar selectedDate;
     int firstDay;
@@ -74,11 +69,9 @@ public class CalendarAdapter extends BaseAdapter {
     public int getCount() {
         return day_string.size();
     }
-
     public Object getItem(int position) {
         return day_string.get(position);
     }
-
     public long getItemId(int position) {
         return 0;
     }
@@ -95,11 +88,8 @@ public class CalendarAdapter extends BaseAdapter {
 
         }
 
-
         dayView = (TextView) v.findViewById(R.id.date);
         String[] separatedTime = day_string.get(position).split("-");
-
-
         String gridvalue = separatedTime[2].replaceFirst("^0*", "");
         if ((Integer.parseInt(gridvalue) > 1) && (position < firstDay)) {
             dayView.setTextColor(Color.GRAY);
@@ -110,16 +100,15 @@ public class CalendarAdapter extends BaseAdapter {
             dayView.setClickable(false);
             dayView.setFocusable(false);
         } else {
-            // setting curent month's days in blue color.
-            dayView.setTextColor(Color.WHITE);
+            dayView.setTextColor(Color.BLACK);
         }
 
 
         if (day_string.get(position).equals(curentDateString)) {
 
-            v.setBackgroundColor(Color.CYAN);
+            v.setBackgroundColor(Color.parseColor("#66ff33"));
         } else {
-            v.setBackgroundColor(Color.parseColor("#343434"));
+            v.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 
 
@@ -135,16 +124,7 @@ public class CalendarAdapter extends BaseAdapter {
         if (monthStr.length() == 1) {
             monthStr = "0" + monthStr;
         }
-
         // show icon if date is not empty and it exists in the items array
-        /*ImageView iw = (ImageView) v.findViewById(R.id.date_icon);
-        if (date.length() > 0 && items != null && items.contains(date)) {
-            iw.setVisibility(View.VISIBLE);
-        } else {
-            iw.setVisibility(View.GONE);
-        }
-        */
-
         setEventView(v, position,dayView);
 
         return v;
@@ -152,24 +132,18 @@ public class CalendarAdapter extends BaseAdapter {
 
     public View setSelected(View view,int pos) {
         if (previousView != null) {
-            previousView.setBackgroundColor(Color.parseColor("#343434"));
+            previousView.setBackgroundColor(Color.parseColor("#ffffff"));
         }
 
-        view.setBackgroundColor(Color.CYAN);
+        view.setBackgroundColor(Color.parseColor("#66ff33"));
 
         int len=day_string.size();
         if (len>pos) {
             if (day_string.get(pos).equals(curentDateString)) {
-
             }else{
-
                 previousView = view;
-
             }
-
         }
-
-
         return view;
     }
 
@@ -224,9 +198,6 @@ public class CalendarAdapter extends BaseAdapter {
         return maxP;
     }
 
-
-
-
     public void setEventView(View v,int pos,TextView txt){
 
         int len = CalendarCollection.date_collection_arr.size();
@@ -235,28 +206,21 @@ public class CalendarAdapter extends BaseAdapter {
             String date=cal_obj.date;
             int len1=day_string.size();
             if (len1>pos) {
-
                 if (day_string.get(pos).equals(date)) {
-                    v.setBackgroundColor(Color.parseColor("#343434"));
-                    //v.setBackgroundResource(R.drawable.rounded_calender_item);
-
-                    txt.setTextColor(Color.WHITE);
+                    v.setBackgroundColor(Color.parseColor("#ffff66"));
+                    txt.setTextColor(Color.BLACK);
                 }
             }}
-
-
-
     }
-
-
     public void getPositionList(String date,final Activity act){
 
         int len=CalendarCollection.date_collection_arr.size();
         for (int i = 0; i < len; i++) {
             CalendarCollection cal_collection=CalendarCollection.date_collection_arr.get(i);
             String event_date=cal_collection.date;
-
-            String event_message=cal_collection.event_message;
+            String event_name=cal_collection.eventName;
+            String time=cal_collection.time;
+            String loc=cal_collection.location;
 
             if (date.equals(event_date)) {
 
@@ -264,21 +228,13 @@ public class CalendarAdapter extends BaseAdapter {
                 new AlertDialog.Builder(context)
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setTitle("Date: "+event_date)
-                        .setMessage("Event: "+event_message)
+                        .setMessage("Event: "+event_name+"\n"+"Time: "+time+"\n"+"Location: "+loc)
                         .setPositiveButton("OK",new android.content.DialogInterface.OnClickListener(){
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                act.finish();
-                            }
+                            public void onClick(DialogInterface dialog, int which) {}
                         }).show();
                 break;
             }else{
-
-
-            }}
-
-
-
+            }
+        }
     }
-
 }

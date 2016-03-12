@@ -7,10 +7,11 @@
     android:orientation="horizontal" >
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:gravity="left"
+        android:layout_marginLeft="10dp"
         android:orientation="vertical" >
 
         <TextView
@@ -31,6 +32,41 @@
             android:padding="4dp"
             android:text="TextView" />
 
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            android:text="TextView" />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:background="#77c265"
+        android:layout_gravity="center"
+        android:layout_marginLeft="150dp"
+        android:textColor="#ffffff"
+        android:onClick="deleteClicked"/>
 
 </LinearLayout>
